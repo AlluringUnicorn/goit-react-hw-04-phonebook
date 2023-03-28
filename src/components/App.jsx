@@ -5,7 +5,9 @@ import { Filter } from './Filter';
 import css from './App.module.css';
 
 const App = () => {
-  const [contacts, setContacts] = useState(()=>JSON.parse(localStorage.getItem('contacts')) ?? []);
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem('contacts')) ?? []
+  );
   const [filter, setFilter] = useState('');
 
   const createUser = data => {
@@ -40,21 +42,12 @@ const App = () => {
   const normalizedFilter = filter.toLowerCase();
 
   const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter));
-  
-    // Аналог ComponentDidUpdate
-  // useEffect(() => {
-  //  contacts && localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts.length]);
+    contact.name.toLowerCase().includes(normalizedFilter)
+  );
 
-  // Аналог ComponentDidMount
   useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
-    console.log(savedContacts);
-    if (savedContacts) {
-      setContacts(savedContacts);
-    }
-  }, []);
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   console.log(contacts);
   return (
