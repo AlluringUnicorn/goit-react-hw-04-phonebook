@@ -1,0 +1,42 @@
+.wrapper{
+    margin-left: 20px;
+
+}
+
+.form{
+    border: 2px solid gray;
+    padding: 15px;
+    width: 300px;
+}
+
+.input{
+
+margin-top: 10px;
+}
+
+.label{
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.btn, .delete_btn{
+    background-color: white;
+    border-radius:4px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.delete_btn{
+    margin-left: 10px;
+}
+
+.btn:hover, .delete_btn:hover{
+    background-color: blueviolet;
+    color: white;
+}
+
+.list_item{
+    margin-bottom: 5px;
+}
