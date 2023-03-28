@@ -5,24 +5,8 @@ import { Filter } from './Filter';
 import css from './App.module.css';
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(()=>JSON.parse(localStorage.getItem('contacts')) ?? []);
   const [filter, setFilter] = useState('');
-
-  // Аналог ComponentDidUpdate
-  useEffect(() => {
-    if (contacts.length === 0) {
-      return;
-    }
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  // Аналог ComponentDidMount
-  useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (savedContacts) {
-      setContacts(savedContacts);
-    }
-  }, []);
 
   const createUser = data => {
     const newUser = {
@@ -57,7 +41,22 @@ const App = () => {
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter));
+  
+    // Аналог ComponentDidUpdate
+  // useEffect(() => {
+  //  contacts && localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts.length]);
 
+  // Аналог ComponentDidMount
+  useEffect(() => {
+    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
+    console.log(savedContacts);
+    if (savedContacts) {
+      setContacts(savedContacts);
+    }
+  }, []);
+
+  console.log(contacts);
   return (
     <div className={css.wrapper}>
       <h1>Phonebook</h1>
